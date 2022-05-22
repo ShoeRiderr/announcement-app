@@ -53,14 +53,23 @@
 
 @section('scripts')
     <script type="text/javascript">
+        let imageCounter = 1;
+
         $(document).ready(function() {
-          $("#add-image").click(function(){ 
+          $("#add-image").click(function(){
+              if (imageCounter >= 5) {
+                  alert('You can upload maximum 5 photos per announcement.');
+                  return;
+              }
+
               const html = $(".clone").html();
               $(".increment").after(html);
+              imageCounter ++;
           });
 
           $("body").on("click","#remove-image",function(){ 
               $(this).parents(".control-group").remove();
+              imageCounter --;
           });
         });
     </script>
