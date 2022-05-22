@@ -23,7 +23,7 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        return view('admin.index', [
+        return view('admin.announcements.index', [
             'announcements' => Announcement::all(),
         ]);
     }
@@ -33,7 +33,7 @@ class AnnouncementController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        return view('admin.announcements.create');
     }
 
     /**
@@ -41,33 +41,9 @@ class AnnouncementController extends Controller
      *
      * @return RedirectResponse
      */
-    public function store(StoreRequest $request): RedirectResponse
+    public function store(StoreRequest $request)
     {
         return redirect()->route('admin.announcements.index')->with('message', $this->announcementService->save($request));
-    }
-
-    /**
-     * @param Announcement $announcement
-     *
-     * @return Response
-     */
-    public function show(Announcement $announcement)
-    {
-        return view('admin.show', [
-            'announcement' => $announcement,
-        ]);
-    }
-
-    /**
-     * @param Announcement $announcement
-     *
-     * @return Response
-     */
-    public function edit(Announcement $announcement)
-    {
-        return view('admin.edit', [
-            'announcement' => $announcement,
-        ]);
     }
 
     /**

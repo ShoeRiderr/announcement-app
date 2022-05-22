@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Announcement;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\ValidationException;
 
 class StoreRequest extends FormRequest
 {
@@ -24,12 +26,12 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required'],
-            'description' => ['required'],
-            'price' => ['required'],
+            'title' => ['required', 'max:50'],
+            'description' => ['sometimes'],
+            'price' => ['required', 'numeric'],
             'storage' => ['sometimes'],
-            'images' => ['max:5'],
-            'images.*' => ['max:2048'],
+            'images' => ['max:5', 'array'],
+            'images.*' => ['max:2048', 'mimes:jpg,bmp,png,jpeg'],
         ];
     }
 }

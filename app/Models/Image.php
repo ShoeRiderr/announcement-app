@@ -11,7 +11,7 @@ class Image extends Model
 
     protected $fillable = [
         'storage',
-        'filename',
+        'name',
     ];
 
     /**

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->string('storage')->default('local');
-            $table->string('filename');
+            $table->string('name');
             $table->timestamps();
         });
     }
